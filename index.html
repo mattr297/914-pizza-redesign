@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>914 Pizza | Harrison, NY</title>
+  <style>
+    :root {
+      --red: #b91c1c;
+      --dark: #161414;
+      --cream: #fff7ed;
+      --gold: #f59e0b;
+      --muted: #6b5f57;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 7%;
+      background: rgba(255, 247, 237, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: 900;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: 0 12px 28px rgba(185, 28, 28, 0.25);
+    }
+
+    .btn-secondary {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+      min-height: 78vh;
+      padding: 70px 7%;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      max-width: 610px;
+      color: var(--muted);
+      font-size: 1.18rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .quick-info {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .pizza-card {
+      position: relative;
+      min-height: 520px;
+      border-radius: 36px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    }
+
+    .floating-badge {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    .floating-badge strong {
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+
+    section { padding: 80px 7%; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .section-heading p {
+      max-width: 460px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+    }
+
+    .card p { color: var(--muted); }
+
+    .price {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--red);
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .dark-box {
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 36px;
+      padding: 42px;
+    }
+
+    .dark-box p { color: #e7d8cc; margin: 16px 0 26px; }
+
+    .photo-box {
+      min-height: 420px;
+      border-radius: 36px;
+      background:
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.25)),
+        url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .reviews {
+      background: var(--red);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .reviews h2 { margin-bottom: 18px; }
+    .reviews p { max-width: 720px; margin: 0 auto 28px; font-size: 1.1rem; color: #ffe9e9; }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 30px;
+      padding: 60px 7%;
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .footer p, .footer li { color: #d6cbc4; }
+    .footer ul { list-style: none; margin-top: 12px; }
+
+    @media (max-width: 860px) {
+      .nav-links a:not(.btn) { display: none; }
+      .hero, .split, .footer { grid-template-columns: 1fr; }
+      .hero { padding-top: 42px; }
+      .pizza-card { min-height: 390px; }
+      .cards { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="#" class="logo">914<span>Pizza</span></a>
+    <div class="nav-links">
+      <a href="#menu">Menu</a>
+      <a href="#events">Events</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn-primary" href="tel:9146981313">Call to Order</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Harrison, NY • Detroit, Grandma & NY Style</div>
+        <h1>Big flavor. Local slice.</h1>
+        <p>Fresh-baked pizza, classic Italian comfort food, and party-ready catering from 914 Pizza on Halstead Ave.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:9146981313">Order Now</a>
+          <a class="btn btn-secondary" href="#menu">View Menu</a>
+        </div>
+        <div class="quick-info">
+          <span>📍 125 Halstead Ave</span>
+          <span>☎ 914-698-1313</span>
+          <span>⭐ Local favorite</span>
+        </div>
+      </div>
+      <div class="pizza-card">
+        <div class="floating-badge">
+          <strong>Try the Grandma Pie</strong>
+          <span>Square, crispy, saucy, cheesy — built for sharing.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="section-heading">
+        <h2>Signature favorites</h2>
+        <p>Keep the homepage simple: show the best sellers first, then send visitors straight to ordering.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Classic Grandma Pie</h3>
+          <p>Thin, crispy square pizza with fresh mozzarella, tomato sauce, basil, and olive oil.</p>
+          <span class="price">Fan favorite</span>
+        </article>
+        <article class="card">
+          <h3>Detroit Pizza</h3>
+          <p>Thick, airy crust with caramelized cheese edges and bold sauce across the top.</p>
+          <span class="price">Crispy edges</span>
+        </article>
+        <article class="card">
+          <h3>Penne Alla Vodka</h3>
+          <p>A comforting pasta classic for anyone ordering more than pizza.</p>
+          <span class="price">Comfort pick</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="events">
+      <div class="split">
+        <div class="dark-box">
+          <div class="eyebrow">Parties & Events</div>
+          <h2>Pizza parties without the cleanup.</h2>
+          <p>Birthday parties, private events, catering trays, and hands-on pizza-making classes for kids and families.</p>
+          <a class="btn btn-primary" href="mailto:info@914pizzaharrison.com">Ask About Events</a>
+        </div>
+        <div class="photo-box" aria-label="Pizza on table"></div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <h2>Make ordering obvious.</h2>
+      <p>The real goal of this redesign is simple: fewer distractions, stronger photos, clearer calls-to-action, and more calls/orders from hungry visitors.</p>
+      <a class="btn btn-secondary" href="tel:9146981313">Call 914-698-1313</a>
+    </section>
+  </main>
+
+  <footer id="visit" class="footer">
+    <div>
+      <h3>914 Pizza</h3>
+      <p>Detroit, Grandma, Sicilian, and classic NY-style pizza in Harrison, NY.</p>
+    </div>
+    <div>
+      <h3>Visit</h3>
+      <ul>
+        <li>125 Halstead Ave</li>
+        <li>Harrison, NY 10528</li>
+        <li>914-698-1313</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Hours</h3>
+      <ul>
+        <li>Mon: Closed</li>
+        <li>Tue–Sun: 11:00am–8:30pm</li>
+        <li>Confirm hours before visiting</li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
